@@ -98,7 +98,7 @@ raw_test2_values = {
 	91: False
 }
 
-groups = {
+test2_groups = {
 	"DT": [1,7,11,16,25,32,49],
 	"B": [4,5,28,38,46,53,61,64],
 	"BD": [2,9,12,19,31,45,47,55,59,62],
@@ -122,8 +122,9 @@ for key in raw_test2_values.keys():
 
 test2_values = raw_test2_values
 
-for key1 in groups.keys():
-	for key2 in groups.keys():
+"""
+for key1 in test2_groups.keys():
+	for key2 in test2_groups.keys():
 		if key1!=key2:
-			print(key1,key2,len(set(groups[key1]).intersection(set(groups[key2]))))
-	
+			print(key1,key2,len(set(test2_groups[key1]).intersection(set(test2_groups[key2]))))
+"""	
