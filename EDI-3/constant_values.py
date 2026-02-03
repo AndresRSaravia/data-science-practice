@@ -1,5 +1,6 @@
-import json
-import numpy as np
+raw_test1_values = [0,0,1,2,3]
+test1_values = {x: [0,0,1,2,3] for x in range(1,36)}
+test1_values[1] = None
 
 asc = [0, 0, 1, 2, 3, 4] # True
 des = [4, 3, 2, 1, 0, 0] # False
@@ -98,6 +99,15 @@ raw_test2_values = {
 	91: False
 }
 
+for key in raw_test2_values.keys():
+	values = raw_test2_values[key]
+	if values is not None and values:
+		raw_test2_values[key] = asc
+	if values is not None and not values:
+		raw_test2_values[key] = des
+
+test2_values = raw_test2_values
+
 test2_groups = {
 	"DT": [1,7,11,16,25,32,49],
 	"B": [4,5,28,38,46,53,61,64],
@@ -113,18 +123,13 @@ test2_groups = {
 	"MF": [3,6,14,22,35,39,48,58]
 }
 
-for key in raw_test2_values.keys():
-	values = raw_test2_values[key]
-	if values is not None and values:
-		raw_test2_values[key] = asc
-	if values is not None and not values:
-		raw_test2_values[key] = des
-
-test2_values = raw_test2_values
-
 """
-for key1 in test2_groups.keys():
-	for key2 in test2_groups.keys():
-		if key1!=key2:
-			print(key1,key2,len(set(test2_groups[key1]).intersection(set(test2_groups[key2]))))
-"""	
+import pandas as pd
+df_data = pd.DataFrame(columns = ["A","B"])
+df_data["A"] = [2,2,3]
+df_data["B"] = [1,4,34]
+df_data["A-B"] = df_data.mean(axis=1)
+print(df_data)
+"""
+
+
