@@ -1,5 +1,5 @@
 raw_test1_values = [0,0,1,2,3]
-test1_values = {x: [0,0,1,2,3] for x in range(1,36)}
+test1_values = {x: [0,0,1,2,3] for x in range(2,36)}
 test1_values[1] = None
 
 asc = [0, 0, 1, 2, 3, 4] # True
@@ -128,7 +128,7 @@ incons_pairs = [
 	(30,54),(31,59),(34,57),(37,41),(45,62)
 ]
 
-critical_fours = [17,23,30,39,48,70,80,89,90]
+critical_fours = [17,23,30,39,48,70,80,88,89,90]
 
 """
 import pandas as pd
