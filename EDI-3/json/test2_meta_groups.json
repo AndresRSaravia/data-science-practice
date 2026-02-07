@@ -1,0 +1,8 @@
+{
+	"EDRC [DT+B+BD]":["DT","B","BD"],
+	"IC [LSE+PA]":["LSE","PA"],
+	"IPC [II+IA]":["II","IA"],
+	"APC [ID+ED]":["ID","ED"],
+	"OC [P+A]":["P","A"],
+	"GPMC [LSE+PA+II+IA+ID+ED+P+A+MF]":["LSE","PA","II","IA","ID","ED","P","A","MF"]
+}
