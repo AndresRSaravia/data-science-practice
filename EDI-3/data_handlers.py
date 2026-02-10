@@ -30,7 +30,13 @@ def get_values(raw_row_test,test_values,offset=0,extrachars=[""]):
 	return row_test
 
 def process_row(key,raw_row):
-	row_basic = [key,raw_row["año/división"],raw_row["peso"],raw_row["altura"]]
+	row_basic = [
+		key,
+		raw_row["colegio"],
+		raw_row["año/división"],
+		raw_row["peso"],
+		raw_row["altura"]
+	]
 	raw_row_test1 = get_characters(raw_row["test1"],"|","-",extrachars=["S","N"])
 	raw_row_test2 = get_characters(raw_row["test2"],"|","-")
 	test1_values = retrieve_json("test1_values")
@@ -72,10 +78,13 @@ def process_group(df,keyg,group,T_score):
 	df_keyg = df_keyg.apply(lambda x: (x,T_score[str(int(x))]))
 	return df_keyg
 
-def process_meta_group(df,keymg,meta_group): #,T_score
+def process_meta_group(df,keymg,meta_group,limits,T_score):
 	mgcolumns = list(map(lambda x: f"{x}", meta_group))
 	df_keymg = sum(map(lambda x: df[x].apply(lambda x: x[1]), mgcolumns))
-	df_keymg = df_keymg.apply(lambda x: (x)) #,T_score[str(int(x))]
+	l1,l2 = limits
+	lim_fun = lambda x: l1 if x<=l1 else (l2 if x>=l2 else x)
+	lim_fun_s = lambda x: str(int(lim_fun(x)))
+	df_keymg = df_keymg.apply(lambda x: (x,T_score[lim_fun_s(x)]))
 	return df_keymg
 
 def typical(x,limit1,limit2):
