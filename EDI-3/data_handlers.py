@@ -65,13 +65,15 @@ def process_nans(df,columns,tag):
 
 def process_sum(df,keyg,group):
 	gcolumns = list(map(lambda x: f"t1v{x:02}", group))
-	df_keyg = sum(map(lambda x: df[x], gcolumns))
+	if_none_zero = lambda x: 0 if x is None else x
+	df_keyg = sum(map(lambda x: df[x].apply(if_none_zero), gcolumns))
+	print(df_keyg)
 	return df_keyg
 
 def process_group(df,keyg,group,T_score):
 	gcolumns = list(map(lambda x: f"t2v{x:02}", group))
 	if_none_zero = lambda x: x if x is not None else 0
-	df_keyg = sum(map(lambda x: df[x].apply(lambda x: if_none_zero(x)), gcolumns))
+	df_keyg = sum(map(lambda x: df[x].apply(if_none_zero), gcolumns))
 	df_keyg_T = df_keyg.apply(lambda x: T_score[str(int(x))])
 	return df_keyg,df_keyg_T
 
